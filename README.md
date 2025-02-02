@@ -1,0 +1,2 @@
+# wplog
+Bruteforce CMS Wordpress
